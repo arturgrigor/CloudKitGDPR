@@ -1,0 +1,3 @@
+[submodule "Carthage/Checkouts/ZIPFoundation"]
+	path = Carthage/Checkouts/ZIPFoundation
+	url = https://github.com/weichsel/ZIPFoundation.git
