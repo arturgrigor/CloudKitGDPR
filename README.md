@@ -181,6 +181,13 @@ gdpr.exportData(usingTransformer: JSONDataTransformer.default) { result in
 }
 ```
 
+## Notes
+
+### iOS Demo Prerequisites
+- Change the identifier for the `defaultContainer` in the `GDPR+App.swift` file to one that's accessible to you.
+- Replace the `"SomeRecordType"` record type in the same file with one that's actually used in that container.
+- Use the same container identifier for the `com.apple.developer.icloud-container-identifiers` key in the `Demo.entitlements` file.
+
 # Contact
 
 - [GitHub](https://github.com/arturgrigor)

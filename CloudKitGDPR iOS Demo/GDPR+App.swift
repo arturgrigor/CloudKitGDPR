@@ -17,11 +17,13 @@ extension GDPR {
     
     // MARK: - Singleton -
     
+    static let defaultContainer = CKContainer(identifier: "iCloud.com.example.myexampleapp")
+    
     /// Singleton.
     static let shared = GDPR(metadata: [
-        CKContainer.default(): ["someRecordType"],
+        defaultContainer: ["SomeRecordType"],
     ], containerNameMapping: [
-        CKContainer.default(): "default",
+        defaultContainer: "default",
     ])
     
 }

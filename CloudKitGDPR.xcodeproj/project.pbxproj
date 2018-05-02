@@ -64,6 +64,7 @@
 		FE865D1620990C4000AA9E41 /* CloudKitGDPR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CloudKitGDPR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE865D1920990C4100AA9E41 /* CloudKitGDPR.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CloudKitGDPR.h; sourceTree = "<group>"; };
 		FE865D1A20990C4200AA9E41 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FED8BFCD2099D9F200D5FA28 /* Demo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Demo.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +107,7 @@
 				FE0EDBD52099197100CC16BF /* Assets.xcassets */,
 				FE0EDBD72099197100CC16BF /* LaunchScreen.storyboard */,
 				FE0EDBDA2099197100CC16BF /* Info.plist */,
+				FED8BFCD2099D9F200D5FA28 /* Demo.entitlements */,
 				FE0EDBE020991B5800CC16BF /* ZIPFoundation.xcodeproj */,
 			);
 			path = "CloudKitGDPR iOS Demo";
@@ -343,6 +345,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "CloudKitGDPR iOS Demo/Demo.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "CloudKitGDPR iOS Demo/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -363,6 +366,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "CloudKitGDPR iOS Demo/Demo.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "CloudKitGDPR iOS Demo/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
