@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.homepage = 'https://github.com/arturgrigor/CloudKitGDPR'
   s.social_media_url = 'http://twitter.com/arturgrigor'
   s.authors = { 'Artur Grigor' => 'arturgrigor@gmail.com' }
-  s.source = { :git => 'https://github.com/arturgrigor/CloudKitGDPR', :tag => s.version }
+  s.source = { :git => 'https://github.com/arturgrigor/CloudKitGDPR.git', :tag => s.version }
 
   s.ios.deployment_target = '8.0'
   s.osx.deployment_target = '10.10'
