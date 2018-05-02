@@ -68,14 +68,15 @@ class ViewController: UITableViewController {
                         let url = self.applicationCachesDirectory.appendingPathComponent("data.zip")
                         let archive = Archive(url: url, accessMode: .create)
                         for (fileName, csvContents) in value {
-                            let data = Foundation.Data(bytes: Array(csvContents.utf8))
-                            try? archive?.addEntry(with: fileName, type: .file, uncompressedSize: UInt32(data.count), provider: { position, size -> Foundation.Data in
+                            let data = Data(bytes: Array(csvContents.utf8))
+                            try? archive?.addEntry(with: fileName, type: .file, uncompressedSize: UInt32(data.count), provider: { position, size -> Data in
                                 return data
                             })
                         }
                         
                         DispatchQueue.main.async {
                             let viewController = UIActivityViewController(activityItems: [url], applicationActivities: [])
+                            viewController.popoverPresentationController?.sourceView = self.exportDataCell
                             viewController.completionWithItemsHandler = { _, _, _, _ in
                                 try? FileManager.default.removeItem(at: url)
                             }

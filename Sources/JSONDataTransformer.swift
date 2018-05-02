@@ -14,7 +14,7 @@ import CloudKit
 //
     
 /// JSON data transformer.
-/// - Note: This data transformer will give you an array of CSV file contents.
+/// - Note: This data transformer will give you a list of JSON files.
 open class JSONDataTransformer: DataTransformer {
     public typealias FileName = String
     public typealias FileContents = String

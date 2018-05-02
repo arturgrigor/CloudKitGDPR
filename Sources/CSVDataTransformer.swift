@@ -14,7 +14,7 @@ import CloudKit
 //
     
 /// CSV data transformer.
-/// - Note: This data transformer will give you an array of CSV file contents.
+/// - Note: This data transformer will give you a list of CSV files.
 open class CSVDataTransformer: DataTransformer {
     public typealias FileName = String
     public typealias FileContents = String

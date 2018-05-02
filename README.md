@@ -35,7 +35,7 @@ Run `carthage update` to build the framework and drag the built `CloudKitGDPR.fr
 
 ### Swift Package Manager
 
-The [Swift Package Manager](https://swift.org/package-manager/) is a tool for automating the distribution of Swift code and is integrated into the `swift` compiler. It is in early development, but CloudKitGDPR does support its use on supported platforms. 
+The [Swift Package Manager](https://swift.org/package-manager/) is a tool for automating the distribution of Swift code and is integrated into the `swift` compiler. It is in early development, but CloudKitGDPR does support its use on supported platforms.
 
 Once you have your Swift package set up, adding CloudKitGDPR as a dependency is as easy as adding it to the `dependencies` value of your `Package.swift`.
 
@@ -79,12 +79,17 @@ gdpr.exportData(usingTransformer: JSONDataTransformer.default) { result in
   switch result {
     case .failure(let error):
       print("GDPR export data error: \(error)")
-	
+
     case .success(let value):
       print("User's private data: \(value)")
   }
 }
 ```
+
+Supported transformers
+- `ZeroDataTransformer`: This will give you the CloudKit records directly without any other transformation.
+- `CSVDataTransformer`: This will give you a list of CSV files.
+- `JSONDataTransformer`: This will give you a list of JSON files.
 
 ### Delete All Data ###
 
@@ -101,9 +106,54 @@ gdpr.deleteData { result in
 }
 ```
 
+## Advanced Usage
+
+### iOS
+
+Export data as JSON files in a ZIP archive using the [ZIPFoundation](https://github.com/weichsel/ZIPFoundation) framework.
+
+```swift
+import CloudKitGDPR
+import ZIPFoundation
+
+lazy var applicationCachesDirectory: URL = {
+  let urls = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)
+  return urls[urls.count-1]
+}()
+
+gdpr.exportData(usingTransformer: JSONDataTransformer.default) { result in
+  switch result {
+    case .failure(let error):
+      print("GDPR export data error: \(error)")
+
+    case .success(let value):
+      DispatchQueue.global(qos: .background).async {
+        let url = self.applicationCachesDirectory.appendingPathComponent("data.zip")
+        let archive = Archive(url: url, accessMode: .create)
+        for (fileName, csvContents) in value {
+          let data = Data(bytes: Array(csvContents.utf8))
+          try? archive?.addEntry(with: fileName, type: .file, uncompressedSize: UInt32(data.count), provider: { position, size -> Data in
+            return data
+          })
+        }
+
+        DispatchQueue.main.async {
+          let viewController = UIActivityViewController(activityItems: [url], applicationActivities: [])
+          viewController.popoverPresentationController?.sourceView = self.exportDataCell
+          viewController.completionWithItemsHandler = { _, _, _, _ in
+            try? FileManager.default.removeItem(at: url)
+          }
+
+          self.present(viewController, animated: true, completion: nil)
+        }
+      }
+  }
+}
+```
+
 # Contact
 
-- [GitHub](http://github.com/arturgrigor)
-- [Twitter](http://twitter.com/arturgrigor)
+- [GitHub](https://github.com/arturgrigor)
+- [Twitter](https://twitter.com/arturgrigor)
 
 Let me know if you're using or enjoying this product.
