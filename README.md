@@ -1,5 +1,7 @@
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Build Status](https://travis-ci.org/arturgrigor/CloudKitGDPR.svg?branch=master)](https://travis-ci.org/arturgrigor/CloudKitGDPR)
+[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/CloudKitGDPR.svg)](https://img.shields.io/cocoapods/v/CloudKitGDPR.svg)
+[![Platform](https://img.shields.io/cocoapods/p/CloudKitGDPR.svg?style=flat)](http://cocoadocs.org/docsets/CloudKitGDPR)
 [![Twitter](https://img.shields.io/badge/twitter-@arturgrigor-blue.svg?style=flat)](http://twitter.com/arturgrigor)
 
 # CloudKitGDPR
@@ -32,6 +34,34 @@ github "arturgrigor/CloudKitGDPR" ~> 1.0
 ```
 
 Run `carthage update` to build the framework and drag the built `CloudKitGDPR.framework` into your Xcode project.
+
+### CocoaPods
+
+[CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects. You can install it with the following command:
+
+```bash
+$ gem install cocoapods
+```
+
+> CocoaPods 1.1.0+ is required.
+
+To integrate CloudKitGDPR into your Xcode project using CocoaPods, specify it in your `Podfile`:
+
+```ruby
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '10.0'
+use_frameworks!
+
+target '<Your Target Name>' do
+    pod 'CloudKitGDPR', '~> 1.0'
+end
+```
+
+Then, run the following command:
+
+```bash
+$ pod install
+```
 
 ### Swift Package Manager
 
