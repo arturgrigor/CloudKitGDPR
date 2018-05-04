@@ -69,9 +69,7 @@ class ViewController: UITableViewController {
                         let archive = Archive(url: url, accessMode: .create)
                         for (fileName, csvContents) in value {
                             let data = Data(bytes: Array(csvContents.utf8))
-                            try? archive?.addEntry(with: fileName, type: .file, uncompressedSize: UInt32(data.count), provider: { position, size -> Data in
-                                return data
-                            })
+                            try? archive?.addEntry(with: fileName, type: .file, uncompressedSize: UInt32(data.count), provider: { data[$0..<$0+$1] })
                         }
                         
                         DispatchQueue.main.async {
