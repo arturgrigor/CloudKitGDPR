@@ -24,7 +24,7 @@ open class GDPR {
     /// Records by Record Types by Containers.
     public typealias RecordsByRecordTypeByContainer = [CKContainer: [String: [CKRecord]]]
     /// Record Zone IDs by Containers.
-    public typealias RecordsZoneIDsByContainer = [CKContainer: [CKRecordZoneID]]
+    public typealias RecordsZoneIDsByContainer = [CKContainer: [CKRecordZone.ID]]
     /// Container name mapping.
     public typealias ContainerNameMapping = [CKContainer: String]
     
@@ -42,10 +42,10 @@ open class GDPR {
     // MARK: - Properties -
     
     /// Record Types by Containers.
-    open let metadata: RecordTypesByContainer
+    public let metadata: RecordTypesByContainer
     
     /// Container name mapping.
-    open let containerNameMapping: ContainerNameMapping
+    public let containerNameMapping: ContainerNameMapping
     
     // MARK: - Initialization -
     

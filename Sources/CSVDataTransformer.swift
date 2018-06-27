@@ -23,7 +23,7 @@ open class CSVDataTransformer: DataTransformer {
     // MARK: - Properties -
     
     /// Dispatch queue.
-    open let dispatchQueue: DispatchQueue
+    public let dispatchQueue: DispatchQueue
     
     // MARK: - Initialization -
     
@@ -37,7 +37,7 @@ open class CSVDataTransformer: DataTransformer {
     // MARK: - Constructors -
     
     /// Default instance.
-    open static let `default` = CSVDataTransformer(dispatchQueue: DispatchQueue(label: "GDPR.CSVExporter"))
+    public static let `default` = CSVDataTransformer(dispatchQueue: DispatchQueue(label: "GDPR.CSVExporter"))
     
     // MARK: - GDPRExporter Methods -
     
