@@ -23,7 +23,7 @@ open class JSONDataTransformer: DataTransformer {
     // MARK: - Properties -
     
     /// Dispatch queue.
-    open let dispatchQueue: DispatchQueue
+    public let dispatchQueue: DispatchQueue
     
     // MARK: - Initialization -
     
@@ -37,7 +37,7 @@ open class JSONDataTransformer: DataTransformer {
     // MARK: - Constructors -
     
     /// Default instance.
-    open static let `default` = JSONDataTransformer(dispatchQueue: DispatchQueue(label: "GDPR.JSONExporter"))
+    public static let `default` = JSONDataTransformer(dispatchQueue: DispatchQueue(label: "GDPR.JSONExporter"))
     
     // MARK: - GDPRExporter Methods -
     
