@@ -30,10 +30,12 @@ $ brew install carthage
 To integrate CloudKitGDPR into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "arturgrigor/CloudKitGDPR" ~> 1.1
+github "arturgrigor/CloudKitGDPR" ~> 1.2
 ```
 
 Run `carthage update` to build the framework and drag the built `CloudKitGDPR.framework` into your Xcode project.
+
+❗️ Please note that since version 1.2 this is a *Static Framework* and it does not need to be included in the **carthage copy-frameworks** Build Phase. For more information please consult the [Build static frameworks to speed up your app’s launch times](https://github.com/Carthage/Carthage#carthage-0300-or-higher) section.
 
 ### CocoaPods
 
@@ -53,7 +55,7 @@ platform :ios, '10.0'
 use_frameworks!
 
 target '<Your Target Name>' do
-    pod 'CloudKitGDPR', '~> 1.1'
+    pod 'CloudKitGDPR', '~> 1.2'
 end
 ```
 
