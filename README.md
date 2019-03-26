@@ -11,8 +11,8 @@ Swift framework for allowing users to manage data stored in iCloud. This project
 ## Requirements
 
 - iOS 8.0+ / macOS 10.10+ / tvOS 9.0+ / watchOS 3.0+
-- Xcode 10.0+
-- Swift 4.2+
+- Xcode 10.2+
+- Swift 5.0+
 
 ## Installation
 
@@ -30,7 +30,7 @@ $ brew install carthage
 To integrate CloudKitGDPR into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "arturgrigor/CloudKitGDPR" ~> 1.2
+github "arturgrigor/CloudKitGDPR" ~> 2.0
 ```
 
 Run `carthage update` to build the framework and drag the built `CloudKitGDPR.framework` into your Xcode project.
@@ -55,7 +55,7 @@ platform :ios, '10.0'
 use_frameworks!
 
 target '<Your Target Name>' do
-    pod 'CloudKitGDPR', '~> 1.2'
+    pod 'CloudKitGDPR', '~> 2.0'
 end
 ```
 
@@ -73,7 +73,7 @@ Once you have your Swift package set up, adding CloudKitGDPR as a dependency is 
 
 ```swift
 dependencies: [
-    .Package(url: "https://github.com/arturgrigor/CloudKitGDPR.git", majorVersion: 1)
+    .Package(url: "https://github.com/arturgrigor/CloudKitGDPR.git", majorVersion: 2)
 ]
 ```
 

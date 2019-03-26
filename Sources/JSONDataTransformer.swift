@@ -75,10 +75,8 @@ open class JSONDataTransformer: DataTransformer {
                 ret = GDPR.Result<Result>.failure(error)
             }
             
-            defer {
-                DispatchQueue.main.async {
-                    completion(ret)
-                }
+            DispatchQueue.main.async {
+                completion(ret)
             }
         }
     }

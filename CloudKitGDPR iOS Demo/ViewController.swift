@@ -68,7 +68,7 @@ class ViewController: UITableViewController {
                         let url = self.applicationCachesDirectory.appendingPathComponent("data.zip")
                         let archive = Archive(url: url, accessMode: .create)
                         for (fileName, csvContents) in value {
-                            let data = Data(bytes: Array(csvContents.utf8))
+                            let data = Data(Array(csvContents.utf8))
                             try? archive?.addEntry(with: fileName, type: .file, uncompressedSize: UInt32(data.count), provider: { data[$0..<$0+$1] })
                         }
                         

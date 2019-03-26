@@ -22,7 +22,7 @@ public extension CKDatabase {
     ///   - query: The query object containing the parameters for the search.
     ///   - zoneID: The ID of the zone to search. Search results are limited to records in the specified zone. Specify `nil` to search the default zone of the database.
     ///   - completion: A closure that will be called upon completion.
-    public func allRecords(forQuery query: CKQuery, inZoneWith zoneID: CKRecordZone.ID?, completion: @escaping ([CKRecord]?, Error?) -> Void) {
+    func allRecords(forQuery query: CKQuery, inZoneWith zoneID: CKRecordZone.ID?, completion: @escaping ([CKRecord]?, Error?) -> Void) {
         var result: [CKRecord] = []
         let operation = CKQueryOperation(query: query)
         operation.resultsLimit = CKQueryOperation.maximumResults

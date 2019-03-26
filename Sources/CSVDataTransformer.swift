@@ -71,7 +71,7 @@ open class CSVDataTransformer: DataTransformer {
                         let header = Array(columns)
                         var result = Array<String>(repeating: "", count: columns.count)
                         for key in $0.allKeys() {
-                            if let position = header.index(of: key) {
+                            if let position = header.firstIndex(of: key) {
                                 result[position] = "\"\($0[key]?.description ?? "")\""
                             }
                         }
