@@ -16,7 +16,6 @@ let package = Package(
     targets: [
         .target(
             name: "CloudKitGDPR",
-            dependencies: ["Settings"],
             path: "Sources",
             exclude: ["Sources/Info.plist", "Sources/CloudKitGDPR.h"]
         )

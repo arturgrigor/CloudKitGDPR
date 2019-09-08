@@ -1,3 +1,4 @@
+[![SPM compatible](https://img.shields.io/badge/SPM-compatible-4BC51D.svg?style=flat)](https://swift.org/package-manager/)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Build Status](https://travis-ci.org/arturgrigor/CloudKitGDPR.svg?branch=master)](https://travis-ci.org/arturgrigor/CloudKitGDPR)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/CloudKitGDPR.svg)](https://img.shields.io/cocoapods/v/CloudKitGDPR.svg)
