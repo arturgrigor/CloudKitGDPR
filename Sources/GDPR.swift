@@ -154,6 +154,7 @@ open class GDPR {
         let dispatchGroup = DispatchGroup()
         let containers = self.metadata.keys
         var result: RecordsZoneIDsByContainer = [:]
+        var zonesDeleted: [CKRecordZone.ID] = []
         
         for container in containers {
             guard failure == nil else {
@@ -182,18 +183,28 @@ open class GDPR {
                 let deletionOperation = CKModifyRecordZonesOperation(recordZonesToSave: nil, recordZoneIDsToDelete: zoneIDs)
                 
                 dispatchGroup.enter()
-                deletionOperation.modifyRecordZonesCompletionBlock = { _, deletedZones, error in
+                
+                deletionOperation.perRecordZoneDeleteBlock = { zoneId, result in
+                    switch result {
+                    case .success(_):
+                        zonesDeleted.append(zoneId)
+                    case .failure(let error):
+                        failure = error
+                    }
+                }
+                
+                deletionOperation.modifyRecordZonesResultBlock = { zoneResult in
                     defer {
                         dispatchGroup.leave()
                     }
-                    
-                    if let error = error {
+                    switch zoneResult {
+                    case .success(_):
+                        let deletedZones = zonesDeleted
+                        result[container] = deletedZones
+                    case .failure(let error):
                         failure = error
                         return
                     }
-                    
-                    let deletedZones = deletedZones ?? []
-                    result[container] = deletedZones
                 }
                 
                 database.add(deletionOperation)

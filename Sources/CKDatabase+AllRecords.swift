@@ -27,10 +27,15 @@ public extension CKDatabase {
         let operation = CKQueryOperation(query: query)
         operation.resultsLimit = CKQueryOperation.maximumResults
         operation.zoneID = zoneID
-        operation.recordFetchedBlock = { record in
-            result.append(record)
+        operation.recordMatchedBlock = { recordID, fetchedResult in
+            switch fetchedResult {
+            case .success(let record):
+                result.append(record)
+            case .failure(let error):
+                completion(nil, error)
+            }
         }
-        operation.queryCompletionBlock = self.queryCompletionBlock(forInitialOperation: operation) { error in
+        operation.queryResultBlock = self.queryCompletionBlock(forInitialOperation: operation) { error in
             if let error = error {
                 completion(nil, error)
             } else {
@@ -47,22 +52,23 @@ public extension CKDatabase {
     /// - Parameters:
     ///   - initialOperation: The initial operation.
     ///   - completion: A closure that will be called after fetching all data.
-    fileprivate func queryCompletionBlock(forInitialOperation initialOperation: CKQueryOperation, completion: @escaping (Error?) -> Void) -> ((CKQueryOperation.Cursor?, Error?) -> Void) {
-        return { cursor, error in
-            if let error = error {
+    fileprivate func queryCompletionBlock(forInitialOperation initialOperation: CKQueryOperation, completion: @escaping (Error?) -> Void) -> ((Result<CKQueryOperation.Cursor?, Error>) -> Void) {
+        return { result in
+            switch result {
+            case .success(let cursor):
+                if let cursor = cursor {
+                    let newOperation = CKQueryOperation(cursor: cursor)
+                    newOperation.resultsLimit = initialOperation.resultsLimit
+                    newOperation.zoneID = initialOperation.zoneID
+                    newOperation.recordMatchedBlock = initialOperation.recordMatchedBlock
+                    newOperation.queryResultBlock = self.queryCompletionBlock(forInitialOperation: newOperation, completion: completion)
+                    self.add(newOperation)
+                } else {
+                    completion(nil)
+                }
+            case .failure(let error):
                 completion(error)
                 return
-            }
-            
-            if let cursor = cursor {
-                let newOperation = CKQueryOperation(cursor: cursor)
-                newOperation.resultsLimit = initialOperation.resultsLimit
-                newOperation.zoneID = initialOperation.zoneID
-                newOperation.recordFetchedBlock = initialOperation.recordFetchedBlock
-                newOperation.queryCompletionBlock = self.queryCompletionBlock(forInitialOperation: newOperation, completion: completion)
-                self.add(newOperation)
-            } else {
-                completion(nil)
             }
         }
     }
