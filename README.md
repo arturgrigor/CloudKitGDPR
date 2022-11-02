@@ -11,9 +11,9 @@ Swift framework for allowing users to manage data stored in iCloud. This project
 
 ## Requirements
 
-- iOS 8.0+ / macOS 10.10+ / tvOS 9.0+ / watchOS 3.0+
-- Xcode 10.2+
-- Swift 5.0+
+- iOS 15.0+ / macOS 12+ / tvOS 15.0+ / watchOS 8.0+
+- Xcode 13.0+
+- Swift 5.5+
 
 ## Installation
 
